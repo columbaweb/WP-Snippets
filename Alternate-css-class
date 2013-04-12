@@ -1,0 +1,11 @@
+<section id="containers">
+  <?php query_posts('post_type=containers&posts_per_page=3'); ?>
+	<?php $class = ''; // set your class to nothing outside the loop ?>
+	<?php if ( have_posts() ) : while ( have_posts() ) : the_post(); ?>
+		<?php $class = ('first-container' == $class) ? 'second-container' : 'first-container'; // alternate classes ?>
+			<div class="<?php echo $class ?>">
+				<h2><?php the_title(); ?></h2>
+				<?php the_content(); ?>
+			</div>
+	<?php endwhile; endif; wp_reset_query(); ?>
+</section>

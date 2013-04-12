@@ -1,0 +1,13 @@
+<section id="containers">
+  <?php query_posts('post_type=containers&posts_per_page=3'); ?>
+	<?php if ( have_posts() ) : 
+	$i = 0;?>	
+	<?php while (have_posts()) : the_post();
+	$i++;?>
+		
+			<div class="class-<?php echo $i%3+1; ?>">
+				<h2><?php the_title(); ?></h2>
+				<?php the_content(); ?>
+			</div>
+	<?php endwhile; endif; wp_reset_query(); ?>
+</section>

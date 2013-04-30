@@ -1,0 +1,29 @@
+<script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.2/jquery-ui.min.js"></script>
+<script>
+   jQuery(function() {
+      jQuery( "#tabs" ).tabs();
+   });
+</script>
+
+
+=======================================================
+
+
+
+<section id="tabbed-area">
+  <div id="tabs">
+    <ul>
+      <?php query_posts( 'post_type=sports' ); ?>
+        <?php if (have_posts()) : while (have_posts()) : the_post(); ?>
+            <li><a href="#post-<?php the_ID(); ?>"><?php the_title(); ?></a></li>
+        <?php endwhile; endif; wp_reset_query(); ?>
+    </ul>                             
+               
+    <?php query_posts( 'post_type=sports' ); ?>
+    <?php if (have_posts()) : while (have_posts()) : the_post(); ?>
+      <div id="post-<?php the_ID(); ?>">
+        <?php the_content(); ?>  	
+      </div>
+    <?php endwhile; endif; wp_reset_query(); ?>
+  </div>        
+</section> 

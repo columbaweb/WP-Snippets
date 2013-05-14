@@ -1,0 +1,25 @@
+<section id="events">
+      <h2 class="grid_12">Upcoming Events</h2>
+      <div class="column">      
+         <?php query_posts('showposts=3'); ?>
+         <?php $posts = get_posts('post_type=ai1ec_event&numberposts=3&offset=1'); foreach ($posts as $post) : start_wp(); ?>      
+         <?php static $count1 = 0; if ($count1 == "3") { break; } else { ?>   
+            <div class="grid_6">
+               <h2><?php the_title(); ?></h2>
+               <?php the_content(); ?>
+            </div>     
+         <?php $count1++; } ?>
+         <?php endforeach; ?>
+      </div>  
+      <div class="column"> 
+         <?php query_posts('showposts=4'); ?>
+         <?php $posts = get_posts('post_type=ai1ec_event&numberposts=4&offset=4'); foreach ($posts as $post) : start_wp(); ?>
+         <?php static $count2 = 0; if ($count2 == "5") { break; } else { ?>      
+            <div class="grid_3">
+               <h2><?php the_title(); ?></h2>
+               <?php the_content(); ?>
+            </div>    
+         <?php $count2++; } ?>
+         <?php endforeach; ?>    
+      </div>
+   </section>

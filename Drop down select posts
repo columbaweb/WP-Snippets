@@ -1,3 +1,18 @@
 <select name=\"archive-dropdown\" onChange='document.location.href=this.options[this.selectedIndex].value;'>
 <option value=\"\"><?php echo attribute_escape(__('Select Post')); ?></option>
 <?php wp_get_archives('type=postbypost&format=option&show_post_count=0'); ?> </select>
+
+
+
+
+
+
+        <select name="drop_cat" onChange='document.location.href=this.options[this.selectedIndex].value;'>
+            <option value=""><?php echo attribute_escape(__('Select Event')); ?></option>
+            <?php
+               $args = array( 'post_type' => 'event', 'meta_key' => '_start_eventtimestamp', 'orderby'=> 'meta_value_num', 'order' => 'ASC', 'posts_per_page' => -1 );
+               $events = new WP_Query( $args );
+               if ( $events->have_posts() ) : while ( $events->have_posts() ) : $events->the_post(); ?>
+                  <option value="<?php echo get_permalink($post->ID);?>" ); ?><?php the_title(); ?></option>
+               <?php endwhile; endif; ?>
+         </select>

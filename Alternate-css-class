@@ -9,3 +9,11 @@
 			</div>
 	<?php endwhile; endif; wp_reset_query(); ?>
 </section>
+
+
+
+
+===============
+
+
+<div class="box clearfix <?php if (++$count % 2 == 0) { echo "altbox"; } ?>" id="post-<?php the_ID(); ?>">

@@ -1,0 +1,9 @@
+<?php query_posts(array('showposts' => 4, 'post_parent' => 55, 'post__in' => array(81,79,75,73), 'post_type' => 'page'));?>
+   <?php if ( have_posts() ) : while ( have_posts() ) : the_post(); ?>
+      <div class="column3" id="post-<?php the_ID(); ?>">
+         <h2><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h2>
+         <a class="post-thumbnail" href="<?php the_permalink(); ?>"><?php the_post_thumbnail(); ?></a>
+         <?php the_excerpt(); ?>
+         <a class="read-more" href="<?php the_permalink(); ?>">Read More</a>
+      </div>
+   <?php endwhile; endif; wp_reset_query(); ?>

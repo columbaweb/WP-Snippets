@@ -1,0 +1,9 @@
+<div id="logo" class="column6"><a href="<?php echo home_url(); ?>" >
+  <?php if (has_term( 'careers', 'job_type') ) { ?>
+    <img src="<?php bloginfo( 'template_url' ); ?>/images/drc-dc-logo.jpg" width="235" height="97" alt=" Digital Recruitment Company" />
+  <?php } elseif ( has_term( 'interim', 'job_type') ) { ?>
+    <img src="<?php bloginfo( 'template_url' ); ?>/images/drc-di-logo.jpg" width="235" height="97" alt=" Digital Recruitment Company" />
+  <?php } else {  ?>
+    <img src="<?php bloginfo( 'template_url' ); ?>/images/drc-logo.jpg" width="235" height="97" alt=" Digital Recruitment Company" />
+  <?php }?>
+</a></div>

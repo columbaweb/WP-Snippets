@@ -1,0 +1,4 @@
+<?php
+  $term =  $wp_query->queried_object;
+  echo '<h1> '.$term->name.'</h1>';
+?>

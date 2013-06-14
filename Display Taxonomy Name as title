@@ -1,0 +1,4 @@
+<?php 
+  $the_tax = get_taxonomy( get_query_var( 'taxonomy' ) );
+  echo $the_tax->labels->name;
+?>

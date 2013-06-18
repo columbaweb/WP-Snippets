@@ -16,3 +16,40 @@
                   <option value="<?php echo get_permalink($post->ID);?>" ); ?><?php the_title(); ?></option>
                <?php endwhile; endif; ?>
          </select>
+
+
+// Terms of Custom Taxonomy in a Dropdown Menu
+
+<?php
+function get_terms_dropdown($taxonomies, $args){
+   $myterms = get_terms($taxonomies, $args);
+   $output ="<select name='job_type'>";
+   $output .= "<option value=\"#\">Job Categories</option>";
+   foreach($myterms as $term){
+      $root_url = get_bloginfo('url');
+      $term_taxonomy=$term->taxonomy;
+      $term_slug=$term->slug;
+      $term_name =$term->name;
+      $link = $term_slug;
+      $output .="<option value='".$link."'>".$term_name."</option>";
+   }
+   $output .="</select>";
+return $output;
+}
+
+$taxonomies = array('job_type');
+$args = array('orderby'=>'count','hide_empty'=>true);
+?>
+      
+<form action="<?php bloginfo('url'); ?>" method="get">
+<div>
+<?php
+$taxonomies = array('job_type');
+$args = array('orderby'=>'menuorder','hide_empty'=>true);
+$select = get_terms_dropdown($taxonomies, $args);
+
+$select = preg_replace("#<select([^>]*)>#", "<select$1 onchange='return this.form.submit()'>", $select);
+echo $select;
+?>
+<noscript><div><input type="submit" value="Go" /></div></noscript>
+</div></form>

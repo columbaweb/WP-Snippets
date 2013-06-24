@@ -1,0 +1,35 @@
+// add category name in body and post class
+function category_id_class($classes) {
+  global $post;
+	foreach((get_the_category($post->ID)) as $category)
+		$classes[] = $category->category_nicename;
+	return $classes;
+}
+add_filter('post_class', 'category_id_class');
+add_filter('body_class', 'category_id_class');
+
+
+
+
+
+// add css class to body on single post.
+function add_category_to_single($classes) {
+        if (is_single() ) {
+                global $post;
+                foreach((get_the_category($post->ID)) as $category) {
+                        $classes[] = 'category-' . $category->category_nicename;
+                }
+        }
+
+        $terms = wp_get_object_terms($post->ID, 'job_type');
+        $count = count($terms);
+        if ( $count > 0 ){
+                foreach ( $terms as $term ) {
+                        $classes[] =  "taxonomy-" . $term->name;
+                }
+        }
+
+        return $classes;
+
+}
+add_filter('body_class','add_category_to_single');

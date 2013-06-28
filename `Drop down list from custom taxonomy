@@ -1,0 +1,21 @@
+<div class="column6">                 
+            <?php 
+               $taxonomy     = 'job_cat';
+               $orderby      = 'name'; 
+               $show_count   = 1;      // 1 for yes, 0 for no
+               $pad_counts   = 0;      // 1 for yes, 0 for no
+               $hierarchical = 1;      // 1 for yes, 0 for no
+               $title        = 'Job Categories';
+      
+               $args = array(
+                 'taxonomy'     => $taxonomy,
+                 'orderby'      => $orderby,
+                 'show_count'   => $show_count,
+                 'pad_counts'   => $pad_counts,
+                 'hierarchical' => $hierarchical,
+                 'title_li'     => $title
+               );
+            ?>
+            
+            <ul id="job-categories"><?php wp_list_categories( $args ); ?></ul>
+         </div>

@@ -1,0 +1,12 @@
+<!-- Gravatar -->
+<?php
+  // Get email and make it lowercase
+  $email = strtolower(get_post_meta($post->ID, "_pdemail", true));
+  // Generating Hash
+  $email_hash = md5($email);
+  // Path to gravatar
+  $path = "http://www.gravatar.com/avatar/".$email_hash;
+  // Change default gravatar
+  $d = urlencode(get_bloginfo('template_directory') . '/images/blank_gravatar.png');
+?>
+<img src="<?php echo $path?>/?d=<?php echo $d?>&s=110" />

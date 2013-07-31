@@ -1,0 +1,15 @@
+add_action('pre_get_posts', 'diff_post_count_per_cat');
+ 
+function diff_post_count_per_cat() {
+    if (is_admin()) return;
+ 
+    $cat = get_query_var('category_name');
+    switch ($cat) {
+        case 'wordpress':
+            set_query_var('posts_per_page', 5);
+            break;
+        case 'wordpress/news':
+            set_query_var('posts_per_page', 2);
+            break;   
+    }
+}

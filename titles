@@ -1,0 +1,3 @@
+Display title for a post type archive
+
+<h2><?php post_type_archive_title(); ?></h2>

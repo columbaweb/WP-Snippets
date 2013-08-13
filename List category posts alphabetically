@@ -1,0 +1,4 @@
+<?php
+$paged = (get_query_var('paged')) ? get_query_var('paged') : 1;
+query_posts("paged=$paged&cat=$cat&orderby=title&order=ASC");
+?>

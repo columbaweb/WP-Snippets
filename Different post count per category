@@ -1,0 +1,27 @@
+add_action('pre_get_posts', 'diff_post_count_per_cat');
+ 
+function diff_post_count_per_cat() {
+    if (is_admin()) return;
+ 
+    $cat = get_query_var('category_name');
+    switch ($cat) {
+        case 'our-portfolio':
+            set_query_var('posts_per_page', 16);
+            break;
+        case 'medical-devices':
+            set_query_var('posts_per_page', 16);
+            break; 
+        case 'diagnostics':
+            set_query_var('posts_per_page', 16);
+            break;  
+        case 'instrumentation':
+            set_query_var('posts_per_page', 16);
+            break;   
+        case 'therapeutics':
+            set_query_var('posts_per_page', 16);
+            break;            
+        case 'investment-team':
+            set_query_var('posts_per_page', 6);
+            break;       
+    }
+}

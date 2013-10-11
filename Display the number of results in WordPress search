@@ -1,0 +1,9 @@
+<h1>Search Results for: 
+  <?php 
+    $allsearch = &new WP_Query("s=$s&showposts=-1"); 
+    $key = wp_specialchars($s, 1); 
+    $count = $allsearch->post_count; 
+    echo $key; _e(' <span class="results-count"> '); echo $count . ' '; _e('articles found'); _e('</span>'); 
+    wp_reset_query(); 
+  ?>
+</h1>

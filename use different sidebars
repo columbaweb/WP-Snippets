@@ -1,0 +1,11 @@
+<?php
+if ( is_page( 'home' ) ) :
+   get_sidebar( 'jobs' );
+elseif ( is_tax('job_sector') ) :
+   get_sidebar( 'jobs' );
+elseif ( is_post_type_archive('job') ) :
+   get_sidebar( 'jobs' );   
+else :
+   get_sidebar( 'pages' );
+endif;
+?>

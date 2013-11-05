@@ -1,0 +1,183 @@
+<?php /* Template Name: Homepage */  ?>
+
+<?php get_header(); ?>
+
+<div id="content">  
+
+<!-- slider -->
+   <div class="row" id="hp-banner">
+      <div class="span8 slider">
+         <?php echo get_new_royalslider(1); ?>
+      </div> <!-- span8 end -->
+      <div class="span4 cta">
+         <h2>Submit CV</h2>
+         <p>Looking for a job? Submit your CV to us using the form below and one of our consultants will be in touch to discuss suitable roles.</p>
+         <?php if (function_exists('iphorm')) echo iphorm(1); ?>   
+      </div>
+   </div>  
+   
+   <div class="row">
+      <div class="span8">
+
+         <?php if (have_posts()): while (have_posts()): the_post(); ?>
+            <div class="intro">
+               <?php the_content(); ?>
+            </div>
+         <?php endwhile; endif; ?>
+           
+      <!-- jobs tabs -->
+      <section class="tabs">
+         <ul>
+            <li><a href="#construction">Construction</a></li>
+            <li><a href="#property">Property</a></li>
+            <li><a href="#facilities-management">Facilities Management</a></li>
+         </ul>
+
+<!--construction jobs -->   
+        <div class="tabs-wrap">
+          <div id="construction">
+          	<?php $count = 0; ?>
+          	<?php
+            	$args=array(
+            	  'job_sector' => 'Construction',
+            	  'post_type' => 'job',
+            	  'posts_per_page' => -1
+            	);
+
+            	$temp = $wp_query;
+            	$wp_query= null;
+            	$wp_query = new WP_Query();
+            	$wp_query->query($args);
+          	?>
+          	                            
+          	<?php 
+              if ($wp_query->have_posts() ) :
+                $post_count = $wp_query->post_count;
+                $loop_count = 0;
+              
+              while ($wp_query->have_posts()) : $wp_query->the_post(); 
+                $loop_count++;
+              ?> 
+
+              	<div class="job-excerpt <?php if (++$count % 2 == 0) { echo "altbox"; } ?>" id="post-<?php the_ID(); ?>">
+              		<div class="job-description">
+              			<h2><a href="<?php the_permalink() ?>" rel="bookmark" title="<?php the_title(); ?>"><?php echo short_title('...', 10);  ?> </a></h2>
+              			<p><?php echo excerpt(20); ?></p>
+              			<p class="meta"><?php the_time('F jS, Y') ?></p>
+              		</div>	
+              		<div class="job-location">
+              			<?php $loc=get_post_meta($post->ID, 'wtf_joblocate', true); echo $loc; ?>
+                  </div>  
+                  <div class="job-tag">
+              			<?php include 'job-tags.php'; ?>
+              		</div>	 
+              	</div>  <!--job-excerpt end --> 
+
+<!-- loop break -->
+              <?php if( $loop_count == 5 ) : ?>
+                <p class="cta">Can't find what you are looking for? Call us on: <a class="tel" href="tel:02071234567">0207 123 4567</a></p>
+              <?php endif; ?>
+          	<?php endwhile; endif; $wp_query = null; $wp_query = $temp; ?>  <!-- Reset -->    
+          </div> <!-- construction jobs end -->
+
+<!--property jobs -->   
+          <div id="property">
+            <?php $count = 0; ?>
+            <?php
+              $args=array(
+                'job_sector' => 'Property',
+                'post_type' => 'job',
+                'posts_per_page' => -1
+              );
+
+              $temp = $wp_query;
+              $wp_query= null;
+              $wp_query = new WP_Query();
+              $wp_query->query($args);
+            ?>
+                                    
+            <?php 
+              if ($wp_query->have_posts() ) :
+                $post_count = $wp_query->post_count;
+                $loop_count = 0;
+              
+              while ($wp_query->have_posts()) : $wp_query->the_post(); 
+                $loop_count++;
+              ?> 
+
+                <div class="job-excerpt <?php if (++$count % 2 == 0) { echo "altbox"; } ?>" id="post-<?php the_ID(); ?>">
+                  <div class="job-description">
+                    <h2><a href="<?php the_permalink() ?>" rel="bookmark" title="<?php the_title(); ?>"><?php echo short_title('...', 10);  ?> </a></h2>
+                    <p><?php echo excerpt(20); ?></p>
+                    <p class="meta"><?php the_time('F jS, Y') ?></p>
+                  </div>  
+                  <div class="job-location">
+                    <?php $loc=get_post_meta($post->ID, 'wtf_joblocate', true); echo $loc; ?>
+                  </div>  
+                  <div class="job-tag">
+                    <?php include 'job-tags.php'; ?>
+                  </div>   
+                </div>  <!--job-excerpt end --> 
+
+<!-- loop break -->
+              <?php if( $loop_count == 5 ) : ?>
+                <p class="cta">Can't find what you are looking for? Call us on: <a class="tel" href="tel:02071234567">0207 123 4567</a></p>
+              <?php endif; ?>
+            <?php endwhile; endif; $wp_query = null; $wp_query = $temp; ?>  <!-- Reset -->    
+          </div> <!-- property jobs end --> 
+
+<!--facilities-management jobs -->   
+          <div id="facilities-management">
+            <?php $count = 0; ?>
+            <?php
+              $args=array(
+                'job_sector' => 'Facilities Management',
+                'post_type' => 'job',
+                'posts_per_page' => -1
+              );
+
+              $temp = $wp_query;
+              $wp_query= null;
+              $wp_query = new WP_Query();
+              $wp_query->query($args);
+            ?>
+                                        
+            <?php 
+              if ($wp_query->have_posts() ) :
+                $post_count = $wp_query->post_count;
+                $loop_count = 0;
+              
+              while ($wp_query->have_posts()) : $wp_query->the_post(); 
+                $loop_count++;
+              ?> 
+
+                <div class="job-excerpt <?php if (++$count % 2 == 0) { echo "altbox"; } ?>" id="post-<?php the_ID(); ?>">
+                  <div class="job-description">
+                    <h2><a href="<?php the_permalink() ?>" rel="bookmark" title="<?php the_title(); ?>"><?php echo short_title('...', 10);  ?> </a></h2>
+                    <p><?php echo excerpt(20); ?></p>
+                    <p class="meta"><?php the_time('F jS, Y') ?></p>
+                  </div>  
+                  <div class="job-location">
+                    <?php $loc=get_post_meta($post->ID, 'wtf_joblocate', true); echo $loc; ?>
+                  </div>  
+                  <div class="job-tag">
+                    <?php include 'job-tags.php'; ?>
+                  </div>   
+                </div>  <!--job-excerpt end --> 
+
+<!-- loop break -->
+              <?php if( $loop_count == 5 ) : ?>
+                <p class="cta">Can't find what you are looking for? Call us on: <a class="tel" href="tel:02071234567">0207 123 4567</a></p>
+              <?php endif; ?>
+            <?php endwhile; endif; $wp_query = null; $wp_query = $temp; ?>  <!-- Reset -->  
+          </div> <!-- facilities-management jobs end -->      
+        </div> <!-- tabs-wrap end -->
+      </section> <!-- jobs tabs end -->
+    </div> <!-- span 8 end -->
+
+    <?php get_sidebar(); ?>
+  </div> <!-- row end -->   
+
+<?php get_footer(); ?>
+
+ 

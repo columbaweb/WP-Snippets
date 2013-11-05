@@ -1,4 +1,4 @@
 <?php 
    $term_list = wp_get_post_terms($post->ID, 'job_sector', array("fields" => "names"));
-   echo $term_list[]; 
+   echo $term_list[0]; 
 ?>

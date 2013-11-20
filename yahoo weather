@@ -1,0 +1,2 @@
+<?php $woeid = get_field( "weather_id" ); ?>
+<?php echo processWeather('http://xml.weather.yahoo.com/forecastrss?w='.$woeid.'&u=c'); ?>

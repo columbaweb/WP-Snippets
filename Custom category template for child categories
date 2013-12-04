@@ -1,0 +1,11 @@
+# subcategory template
+function myTemplateSelect() {
+    if (is_category() && !is_feed()) {
+        if (cat_is_ancestor_of(94, get_query_var('cat'))) {
+            load_template(TEMPLATEPATH . '/child-of-mycat.php');
+            exit;
+        }
+    }
+}
+
+add_action('template_redirect', 'myTemplateSelect');

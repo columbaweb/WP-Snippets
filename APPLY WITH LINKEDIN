@@ -1,0 +1,79 @@
+add_action( 'wp_head', 'wp_head_callback');
+
+function wp_head_callback(){
+
+	$api_key = 'rEt5p1S5U5J3xZD4akIoy2kL6Tw4blApZ9NEWx_eOyw8SbRQEpl8KJmTCl18IZ0_'; // CHANGE THIS
+
+	printf('<script src="//platform.linkedin.com/in.js" type="text/javascript">
+
+			api_key: %s
+
+			</script>', 
+
+			$api_key
+
+			);			
+
+}
+
+
+
+add_filter( 'the_content', 'the_content_callback');
+
+function the_content_callback( $content ){
+
+
+
+	// MODIFY THIS:
+
+	$companyid		= '123456';
+
+	$phone			= 'required';
+
+	$email 			= 'email@example.com';
+
+
+
+	$jobtitle		= esc_attr( get_the_title( get_the_ID() ) );								  
+
+	$joblocation	= esc_attr( get_post_meta( get_the_ID(), 'location', true ) );
+
+
+
+    $content .= sprintf( '<script type="IN/Apply" data-companyid="%s" data-jobtitle="%s" data-joblocation="%s" data-phone="%s" data-email="%s"></script>',
+
+							$companyid,
+
+							$jobtitle,
+
+							$joblocation,
+
+							$phone,
+
+							$email 
+
+						);
+
+	return $content;
+
+}
+
+
+
+
+
+===========================
+
+
+
+
+add this code outside loop post
+
+<script src="//platform.linkedin.com/in.js" type="text/javascript">
+  api_key: YOUR_API_KEY
+</script>
+
+and add this into loop:
+<script type="IN/Apply" data-companyid="123456" data-jobtitle="<?php the_title()?>" data-joblocation="<?php location here...?>" data-phone="required" data-email="email@email.com"></script>
+
+

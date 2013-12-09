@@ -1,0 +1,17 @@
+# FAQ ACCORDION
+function cb_accordion( $atts, $content = null ) {  
+    return '<div class="accordion box">'. do_shortcode($content) .'</div>';  
+}
+add_shortcode('faq', 'cb_accordion');
+
+# FAQ ACCORDION - question
+function cb_accordion_q( $atts, $content = null ) {  
+    return '<h2>'. do_shortcode($content) .'</h2>';  
+}
+add_shortcode('faq-q', 'cb_accordion_q');
+
+# FAQ ACCORDION - answer
+function cb_accordion_a( $atts, $content = null ) {  
+    return '<div>'. do_shortcode($content) .'</div>';  
+}
+add_shortcode('faq-a', 'cb_accordion_a');

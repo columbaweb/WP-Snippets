@@ -1,0 +1,18 @@
+<?php
+  if(have_posts()) :
+    while(have_posts()) : the_post();
+    $expiry_date_time = get_post_custom_values('expiry');
+    if(is_array($expiry_date_time)){
+    $expiry_str = implode($expiry_date_time);
+    }
+    $remaining_time = strtotime($expiry_date_time)-time();
+    if($remaining_time>0) {
+    the_title();
+    the_excerpt();
+    }
+    endwhile;
+  endif;
+?>
+
+=========================================================================
++ Add a custom field "expiry", date/time format is “MM/DD/YYYY 00:00:00“.

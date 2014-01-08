@@ -17,3 +17,33 @@ if(count($customPostTaxonomies) > 0)
       }
 }
 ?>
+
+======== v2 ==========
+
+<?php 
+  $taxonomy     = 'job_sector';
+  $orderby      = 'name'; 
+  $show_count   = 0;      // 1 for yes, 0 for no
+  $pad_counts   = 0;      // 1 for yes, 0 for no
+  $hierarchical = 1;      // 1 for yes, 0 for no
+               
+  $args = array(
+    'taxonomy'     => $taxonomy,
+    'orderby'      => $orderby,
+    'show_count'   => $show_count,
+    'pad_counts'   => $pad_counts,
+    'hierarchical' => $hierarchical,
+    'current_category'   => 1,
+    'title_li'           => __(''),
+    'hide_empty'         => 0
+  );
+?>
+  
+   <?php foreach (get_terms('job_sector') as $term) : ?>
+      <article> 
+         <h2><a href="<?php echo get_term_link($term->slug, 'job_sector'); ?>"><?php echo $term->name; ?></a></h2>
+         <img src="<?php //echo z_taxonomy_image_url($term->term_id); ?>" />
+         <p><?php echo $term->description; ?></p>
+         <a class="more" href="<?php echo get_term_link($term->slug, 'job_sector'); ?>"><?php echo $term->name; ?></a>
+      </article>
+   <?php endforeach; ?>

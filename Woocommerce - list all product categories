@@ -1,0 +1,11 @@
+<?php echo do_shortcode('[product_categories number="0" parent="0"]') ?>
+
+=============
+
+<?php $catTerms = get_terms('product_cat', array('hide_empty' => 0, 'orderby' => 'ASC')); ?>
+
+    <?php foreach($catTerms as $catTerm) : ?>
+    <ul>
+        <li><a href="<?php echo $catTerm->slug; ?>"><?php echo $catTerm->name; ?></a></li>
+    </ul>
+<?php endforeach; ?>

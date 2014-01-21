@@ -1,0 +1,18 @@
+/** Add "Price" before the price */
+add_filter('woocommerce_get_price','price_text');
+function price_text($price) {
+    if ( is_woocommerce()){
+?>
+
+<div class="price-text">
+<p>Price</p>
+</div>
+<?php
+
+return $price;
+
+} 
+else {
+        return $price;
+    }
+}

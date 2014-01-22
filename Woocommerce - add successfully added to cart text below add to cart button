@@ -1,0 +1,12 @@
+=== in functions.php
+function ys_print_custom_add_to_cart_message() {
+	global $woocommerce;
+	if ( ! empty( $woocommerce->session->ys_atcm ) ) {
+		echo $woocommerce->session->ys_atcm;
+		unset( $woocommerce->session->ys_atcm );
+	}
+}
+
+
+==== in product template
+ys_print_custom_add_to_cart_message()

@@ -1,0 +1,1 @@
+<?php echo get_the_term_list( $wp_query->post->ID, 'london-borough', '', ', ', '' ); ?>

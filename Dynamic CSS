@@ -1,0 +1,11 @@
+<?php 
+     header("Content-type: text/css; charset: UTF-8"); 
+     $absolute_path = explode('wp-content',$_SERVER['SCRIPT_FILENAME']);$wp_load = $absolute_path[0] . 'wp-load.php';require_once($wp_load);
+?>     
+body {
+     background: url('<?php query_posts(array('get_the_category' => 'londoners', 'posts_per_page' => 1 )); ?><?php while (have_posts()) :the_post();?><?php if ( get_field('background_image' ) != "" ) { the_field('background_image'); } else { echo 'http://reynoldsdev.co.uk/thousandlondoners/wp-content/uploads/2014/01/bg.jpg'; } ?> <?php endwhile;?>') no-repeat top center fixed;
+     -webkit-background-size: cover;
+     -moz-background-size: cover;
+     -o-background-size: cover;
+     background-size: cover;
+} 

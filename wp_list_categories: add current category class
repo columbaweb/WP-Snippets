@@ -1,0 +1,5 @@
+<?php
+$catsy = get_the_category();
+$myCat = $catsy[0]->cat_ID;
+wp_list_categories('hierarchical=1&use_desc_for_title=0&orderby=name&title_li=&depth=3&current_category='.$myCat);
+?>

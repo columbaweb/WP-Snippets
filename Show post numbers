@@ -1,0 +1,31 @@
+function Get_Post_Number($postID){
+	$temp_query = $wp_query;
+	$postNumberQuery = new WP_Query('orderby=date&posts_per_page=-1');
+	$counter = 1;
+	$postCount = 0;
+	if($postNumberQuery->have_posts()) :
+		while ($postNumberQuery->have_posts()) : $postNumberQuery->the_post();
+			if ($postID == get_the_ID()){
+				$postCount = $counter;
+			} else {
+				$counter++;
+			}
+	endwhile; endif;
+	wp_reset_query();
+	$wp_query = $temp_query;
+	return $postCount;
+}
+
+
+======
+
+<?php if (have_posts()) : ?>
+	<?php while (have_posts()) : the_post();
+		$currentID = get_the_ID();
+		$currentNumber = Get_Post_Number($currentID);
+		
+======
+
+<?php echo $currentNumber; ?>
+		
+		

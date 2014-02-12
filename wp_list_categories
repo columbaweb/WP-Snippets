@@ -1,0 +1,32 @@
+<!-- list sectors -->
+   <div class="sectors box rounded">
+      <h2>Sector Jobs</h2>
+      <?php 
+         $taxonomy     = 'job_sector';
+         $orderby      = 'name'; 
+         $show_count   = 1;      // 1 for yes, 0 for no
+         $pad_counts   = 0;      // 1 for yes, 0 for no
+         $hierarchical = 1;      // 1 for yes, 0 for no
+         $catsy = get_the_category();
+         $myCat = $catsy[0]->cat_ID;
+                  
+         $args = array(
+            'echo' => 0,
+            'taxonomy'     => $taxonomy,
+            'orderby'      => $orderby,
+            'show_count'   => $show_count,
+            'pad_counts'   => $pad_counts,
+            'hierarchical' => $hierarchical,
+            'exclude' => 40,
+            'current_category'   => $myCat,
+            'title_li'     => __(''),
+            'hide_empty'   => 0
+         );
+
+         $variable = wp_list_categories($args); 
+         
+         $variable = str_replace ( '<a' , '<a class="rounded"', $variable );
+         $variable = str_replace ( '(' , '<span class="rounded">', $variable );
+         $variable = str_replace ( ')' , '</span>', $variable );
+      ?>
+         <ul id="job-sectors"><?php echo $variable; ?></ul>

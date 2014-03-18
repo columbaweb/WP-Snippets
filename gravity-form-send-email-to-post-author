@@ -1,0 +1,14 @@
+# GRAVITY FORM - send notification email to post author
+add_filter('gform_field_value_author_email', 'populate_post_author_email');
+function populate_post_author_email($value){
+    global $post;
+    $author_email = get_the_author_meta('email', $post->post_author);
+    return $author_email;
+}
+
+add_filter( 'gform_notification_email_2', 'route_notification', 10, 2 );
+function route_notification($email_to, $entry) {
+	global $post;
+	$email_to = get_the_author_email();
+	return $email_to;
+}

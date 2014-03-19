@@ -1,0 +1,22 @@
+function print_taxonomy_ranks( $terms ) {
+// if terms is not array or its empty don't proceed
+if ( ! is_array( $terms ) || empty( $terms ) ) {
+    return false;
+}
+
+foreach ( $terms as $term ) {
+    // if the term have a parent, set the child term as attribute in parent term
+    if ( $term->parent != 0 )  {
+        $terms[$term->parent]->child = $term;   
+    } else {
+        // record the parent term
+        $parent = $term;
+    }
+}
+
+echo "Order: $parent->name, Family: {$parent->child->name}, Sub-Family: {$parent->child->child->name}";
+}
+
+
+
+<?php print_taxonomy_ranks( get_the_terms( $post->ID, 'job_sector' ) ); ?>

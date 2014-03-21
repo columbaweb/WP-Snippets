@@ -1,0 +1,10 @@
+<?php $args=array('post_type' =>'people', 'year' => '2014', 'posts_per_page' => -1);
+$page_query = new WP_Query($args); ?>
+<?php if ($page_query->have_posts()) : ?>
+<div class="accordion">  
+<?php while ($page_query->have_posts()) : $page_query->the_post(); ?>
+<h3><?php the_title(); ?></h3>
+<div><?php the_content(); ?></div>
+<?php endwhile; wp_reset_postdata(); ?>
+</div>
+<?php endif; ?> 

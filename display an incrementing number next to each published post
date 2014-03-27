@@ -1,3 +1,5 @@
+# custom post type only
+
 function updateNumbers() {
   global $wpdb;
   $querystr = "SELECT $wpdb->posts.* FROM $wpdb->posts WHERE $wpdb->posts.post_status = 'publish' AND $wpdb->posts.post_type = 'post' ";
@@ -22,3 +24,71 @@ add_action ( 'edit_post', 'updateNumbers' );
 
 
 <?php echo get_post_meta($post->ID,'incr_number',true); ?> 
+
+
+
+====
+# all the posts - post numbering
+function updateNumbers() {
+    /* numbering the published posts, starting with 1 for oldest;
+    / creates and updates custom field 'incr_number';
+    / to show in post (within the loop) use <?php echo get_post_meta($post->ID,'incr_number',true); ?>
+    / alchymyth 2010 */
+    global $wpdb;
+    $querystr = "SELECT $wpdb->posts.* FROM $wpdb->posts 
+                 WHERE $wpdb->posts.post_status = 'publish' 
+                 AND $wpdb->posts.post_type = 'post' 
+                 ORDER BY $wpdb->posts.post_date ASC";
+    $pageposts = $wpdb->get_results($querystr, OBJECT);
+    $counts = 0 ;
+    if ($pageposts):
+    foreach ($pageposts as $post):
+        $counts++;
+        add_post_meta($post->ID, 'incr_number', $counts, true);
+        update_post_meta($post->ID, 'incr_number', $counts);
+    endforeach;
+endif;
+}  
+
+add_action ( 'publish_post', 'updateNumbers', 11 );
+add_action ( 'deleted_post', 'updateNumbers' );
+add_action ( 'edit_post', 'updateNumbers' );
+
+
+===
+
+# one cat only --- post numbering
+function updateNumbers() {
+  global $wpdb;
+  $querystr = "
+    SELECT * FROM $wpdb->posts
+    LEFT JOIN $wpdb->term_relationships ON
+    ($wpdb->posts.ID = $wpdb->term_relationships.object_id)
+    LEFT JOIN $wpdb->term_taxonomy ON
+    ($wpdb->term_relationships.term_taxonomy_id = $wpdb->term_taxonomy.term_taxonomy_id)
+    WHERE $wpdb->posts.post_status = 'publish'
+    AND $wpdb->term_taxonomy.taxonomy = 'category'
+    AND $wpdb->term_taxonomy.term_id = 5
+    ORDER BY post_date ASC
+  ";
+  $pageposts = $wpdb->get_results($querystr, OBJECT);
+  $counts = 0 ;
+  if ($pageposts):
+    foreach ($pageposts as $post):
+      setup_postdata($post);
+      $counts++;
+      add_post_meta($post->ID, 'incr_number', $counts, true);
+      update_post_meta($post->ID, 'incr_number', $counts);
+    endforeach;
+  endif;
+}  
+
+add_action ( 'publish_post', 'updateNumbers' );
+add_action ( 'deleted_post', 'updateNumbers' );
+add_action ( 'edit_post', 'updateNumbers' );  
+
+add_filter( 'wp_list_categories', 'filter_categories' );
+function filter_categories( $html ) {
+    $html = preg_replace( '/\stitle="(.*?)"/', '', $html );
+    return $html;
+}

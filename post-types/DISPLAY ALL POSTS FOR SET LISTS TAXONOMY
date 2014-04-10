@@ -1,0 +1,8 @@
+# DISPLAY ALL POSTS FOR SET LISTS TAXONOMY
+add_action('pre_get_posts', function($query) {
+   if (isset($query->query_vars['set-list'])) {
+      add_filter('post_limits', function($limit){
+         return '';
+      });
+   }
+});

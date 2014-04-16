@@ -1,0 +1,5 @@
+<a class="social-icon sb-icon-facebook" href="http://www.facebook.com/sharer.php?u=<?php the_permalink();?>&amp;t=<?php the_title(); ?>" target="_blank"></a>
+        
+<a class="social-icon sb-icon-twitter" href="http://twitter.com/home/?status=<?php the_title(); ?> - <?php the_permalink(); ?>" target="_blank"></a>
+        
+<a class="social-icon sb-icon-linkedin" href="https://www.linkedin.com/shareArticle?summary=?php the_excerpt(); ?>&title=<?php the_title(); ?>&mini=true&url=<?php the_permalink(); ?>&source=LinkedIn" target="_blank"></a>

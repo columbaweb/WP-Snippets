@@ -3,3 +3,12 @@
 <a class="social-icon sb-icon-twitter" href="http://twitter.com/home/?status=<?php the_title(); ?> - <?php the_permalink(); ?>" target="_blank"></a>
         
 <a class="social-icon sb-icon-linkedin" href="https://www.linkedin.com/shareArticle?summary=?php the_excerpt(); ?>&title=<?php the_title(); ?>&mini=true&url=<?php the_permalink(); ?>&source=LinkedIn" target="_blank"></a>
+
+ <a class="social-icon sb-icon-gplus" href="https://plus.google.com/share?url=<?php the_permalink(); ?>" target="_blank"></a>
+
+
+
+======
++js
+<a class="social-icon sb-icon-gplus" href="https://plus.google.com/share?url=<?php the_permalink(); ?>" onclick="javascript:window.open(this.href,
+  '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;"></a>

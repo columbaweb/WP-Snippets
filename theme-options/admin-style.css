@@ -1,0 +1,30 @@
+#options-page h2 {
+  margin: 0 0 20px 0;
+}
+#options-page fieldset {
+  margin: 0 0 20px 0;
+}
+#options-page fieldset.submit {
+  padding: 0;
+}
+#options-page legend {
+  display: block;
+  font-size: 1.3em;
+  font-weight: bold;
+  margin: 0 0 1em 0;
+  color: #222;
+}
+#options-page label {
+  display: block; 
+  font-size: 1.05em; 
+  font-weight: 600; 
+  color: #222;
+}
+#options-page input[type="text"], #options-page textarea {
+  width: 60%; 
+  min-width: 22em; 
+  padding: 7px;
+} 
+#options-page input[type="text"] {
+  margin:0 0 10px 0;
+} 

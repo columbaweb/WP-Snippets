@@ -1,0 +1,30 @@
+<?php
+    $custom_post_types = get_post_types( 
+        array(
+                '_builtin' => false,
+                'public' => true
+            ),
+            'objects'
+        );
+
+        ksort( $custom_post_types, SORT_ASC );
+
+        echo '<ul>';
+
+        foreach ( $custom_post_types as $custom_post_type ) {
+
+            $exclude = array( 'products', 'sales' );
+
+            if( TRUE === in_array( $custom_post_type->name, $exclude ) )
+                continue;
+
+            $custom_post_type->permalink = get_post_type_archive_link( $custom_post_type->name );
+
+            echo '<li>';
+            echo '<a href="' . $custom_post_type->permalink . '">' . $custom_post_type->label . '</a>';
+            echo '</li>';
+
+        }
+
+        echo '</ul>';
+?>        

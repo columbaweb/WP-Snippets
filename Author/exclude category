@@ -1,0 +1,2 @@
+<?php query_posts($query_string . '&cat=-3,-5'); ?>
+<?php if ( have_posts() ) : while ( have_posts() ) : the_post(); ?>

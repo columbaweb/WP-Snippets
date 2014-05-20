@@ -1,0 +1,8 @@
+function homepage_redirect() {
+    if ( is_front_page() ) {
+    //if ( is_home() ) {
+        wp_redirect( 'category/uncategorized' );
+        exit();
+    }
+}
+add_action( 'template_redirect', 'homepage_redirect' );

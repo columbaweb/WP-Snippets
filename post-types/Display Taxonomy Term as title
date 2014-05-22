@@ -2,3 +2,7 @@
   $term =  $wp_query->queried_object;
   echo '<h1> '.$term->name.'</h1>';
 ?>
+
+===
+
+<?php $term = get_term_by( 'slug', get_query_var( 'term' ), get_query_var( 'taxonomy' ) ); echo $term->name; ?>

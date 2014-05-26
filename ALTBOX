@@ -1,0 +1,1 @@
+class="<?php if (++$count % 2 == 0) { echo "altbox"; } ?>"

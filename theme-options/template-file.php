@@ -3,6 +3,8 @@
             echo $options['contacts_phone'];
          ?></p>
          
+         <a href="tel:<?php $options = get_option( 'cb_options' ); echo str_replace(' ','', $options['contacts_phone']); ?>"><?php $options = get_option( 'cb_options' ); echo $options['contacts_phone']; ?></a>
+         
          <p>EMAIL: <?php
             $options = get_option( 'cb_options' );
             echo $options['contacts_email'];

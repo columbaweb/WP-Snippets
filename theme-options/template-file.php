@@ -15,6 +15,9 @@
             echo $options['contacts_address'];
          ?></p>
          
+         // remove auto p
+         <?php $options = get_option( 'cb_options' ); echo wp_filter_nohtml_kses($options['contacts_address2']); ?>
+         
           <p>TWITTER: <?php
             $options = get_option( 'cb_options' );
             echo $options['social_twitter'];

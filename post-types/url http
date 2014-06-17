@@ -1,0 +1,6 @@
+<!-- website -->
+<?php
+  $url = get_post_meta($post->ID, "stores_url", true); 
+  $url = preg_replace("(http://)", "", $url );
+?>	
+<a class="url" href="http://<?php echo $url; ?>"><?php echo $url; ?></a><?php endif; ?>

@@ -1,0 +1,7 @@
+<!-- email -->
+<?php
+  $email = get_post_meta($post->ID, "stores_email", true); 
+?>
+<a class="email" href="mailto:<?php echo str_replace("@", "&#064;", $email); ?>"><?php echo str_replace("@", " [AT] ", $email); ?></a>
+         
+         

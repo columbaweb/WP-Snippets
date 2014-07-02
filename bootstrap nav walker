@@ -204,3 +204,28 @@ class wp_bootstrap_navwalker extends Walker_Nav_Menu {
 		}
 	}
 }
+
+
+
+
+========================================
+
+<div class="navbar">
+    <div class="navigation">
+        <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+        </a>
+        <div class="nav-collapse collapse">
+            <nav class="nav">
+                <?php wp_nav_menu( array( 'theme_location' => 'topnav', 'container' => '', 'walker' => new wp_bootstrap_navwalker()) ); ?>
+            </nav>
+        </div> <!-- nav-collapse end -->
+    </div> <!-- navigation end -->
+</div> <!-- navbar end -->
+
+========================================
+
+
+

@@ -1,0 +1,17 @@
+<ul class="tab-nav">
+    <?php
+        $thisTrueCat = get_category( get_query_var( 'cat' ) ); 
+        //print $thisTrueCat->term_id;
+    ?>
+    
+    <?php
+        $args = array(
+          'orderby' => 'name',
+          );
+        $categories = get_categories( $args );
+       
+        foreach( $categories as $category ) { ?>
+            <li <?php if ($thisTrueCat->term_id == $category->term_id) { ?> class="ui-state-active" <?php } ?>><a href="<?php echo get_category_link( $category->term_id ) ?>" ><?php echo $category->name ?></a></li>  
+        <?php }; 
+    ?>
+</ul>

@@ -18,6 +18,9 @@
          // remove auto p
          <?php $options = get_option( 'cb_options' ); echo wp_filter_nohtml_kses($options['contacts_address2']); ?>
          
+         // remove br
+         <?php $options = get_option( 'cb_options' ); $address=$options['contacts_address']; echo wp_filter_nohtml_kses($address); ?>
+         
           <p>TWITTER: <?php
             $options = get_option( 'cb_options' );
             echo $options['social_twitter'];

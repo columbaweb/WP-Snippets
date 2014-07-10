@@ -18,8 +18,9 @@
          // remove auto p
          <?php $options = get_option( 'cb_options' ); echo wp_filter_nohtml_kses($options['contacts_address2']); ?>
          
-         // remove br
+         // remove br, use with google maps shortcode
          <?php $options = get_option( 'cb_options' ); $address=$options['contacts_address']; echo wp_filter_nohtml_kses($address); ?>
+          <?php echo do_shortcode('[tb_google_map address="'.$address.'" zoom="12" height="340px"]'); ?>
          
           <p>TWITTER: <?php
             $options = get_option( 'cb_options' );

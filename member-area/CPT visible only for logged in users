@@ -1,0 +1,11 @@
+function tp_stop_guestes( $content ) {
+    global $post;
+
+    if ( $post->post_type == 'clientarea' ) {
+        if ( !is_user_logged_in() ) {
+            $content = 'Please login to view your dashboard';
+        }
+    }
+    return $content;
+}
+add_filter( 'the_content', 'tp_stop_guestes' );

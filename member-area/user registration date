@@ -1,3 +1,4 @@
+// ALL USERS
 <?php
     $users = get_users();
     foreach( $users as $user ) {
@@ -5,4 +6,15 @@
         $registered = $udata->user_registered;
         printf( '%s member since %s<br>', $udata->data->display_name, date( "M Y", strtotime( $registered ) ) );
     }
+?>
+
+
+// CURRENT USER
+<?php
+    global $current_user;
+    $udata = get_userdata( $current_user->ID );
+    $registered = $udata->user_registered;
+    if ( isset($current_user) ) {
+        printf( '%s member since %s<br>', $udata->data->display_name, date( "M Y", strtotime( $registered ) ) );
+    } 
 ?>

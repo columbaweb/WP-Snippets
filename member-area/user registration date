@@ -1,0 +1,8 @@
+<?php
+    $users = get_users();
+    foreach( $users as $user ) {
+        $udata = get_userdata( $user->ID );
+        $registered = $udata->user_registered;
+        printf( '%s member since %s<br>', $udata->data->display_name, date( "M Y", strtotime( $registered ) ) );
+    }
+?>

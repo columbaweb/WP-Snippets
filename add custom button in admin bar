@@ -1,0 +1,13 @@
+# add manual button in admin bar
+function manual_button($wp_admin_bar){
+$args = array(
+'id' => 'custom-button',
+'title' => 'WP Manual',
+'href' => 'http://google.com/',
+'meta' => array(
+'class' => 'manual-button'
+)
+);
+$wp_admin_bar->add_node($args);
+}
+add_action('admin_bar_menu', 'manual_button', 80);

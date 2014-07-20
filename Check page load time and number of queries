@@ -1,0 +1,11 @@
+add_action( 'wp_footer', 'page_speed' );
+ 
+function page_speed() {
+$page_info .= 'Page created in ';
+$page_info .= timer_stop( $display = 0, $precision = 2 );
+$page_info .= ' seconds from ';
+$page_info .= get_num_queries();
+$page_info .= ' queries';
+if( ! current_user_can( 'administrator' ) ) $page_info = "<!– $page_info –>";
+echo $page_info;
+}

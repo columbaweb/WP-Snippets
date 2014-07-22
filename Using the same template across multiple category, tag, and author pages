@@ -1,0 +1,20 @@
+<?php
+// Inspired by a snippet by Justin Tadlock (http://justintadlock.com/) posted here: http://elliotjaystocks.com/blog/tutorial-multiple-singlephp-templates-in-wordpress/#comment-2383
+
+add_filter( 'category_template', 'my_category_template' );
+// I believe *_template hooks exist for just about every type of template so it's easy to apply to other templates as well
+
+function my_category_template( $template ) {
+
+	if( is_category( 1 ) ) // We can search for categories by ID
+		$template = locate_template( array( 'template_id_A.php', 'category.php' ) );
+	elseif( is_category( array( 21, 32 ) ) ) // We can search for multiple categories by ID by passing an array
+		$template = locate_template( array( 'template_id_B.php', 'category.php' ) );
+	elseif( is_category( 'food' ) ) // We can search for categories by their slug
+		$template = locate_template( array( 'template_slug_A.php', 'category.php' ) );
+	elseif( is_category( array( 'music', 'movies' ) ) ) // We can search for multiple categories by slug as well
+		$template = locate_template( array( 'template_slug_A.php', 'category.php' ) );
+	
+	return $template;
+}
+?>

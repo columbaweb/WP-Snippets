@@ -1,0 +1,35 @@
+add_filter('pre_get_posts', 'event_cat_permissions');
+
+function event_cat_permissions ($wp_query) {
+
+	// Include all posts on admin views
+	if ( is_admin() ) return $wp_query;
+
+
+	$exclude_cats = array();
+
+	// Exclude cats if not admin... copy/modify this logic for each custom role
+	if (!current_user_can('administrator')) {
+		$exclude_cats[] = 'exclude-slug';
+	}
+
+
+	// Join with current tax query if set
+	if (is_array($wp_query->tax_query))
+		$tax_query = $wp_query->tax_query;
+	else
+		$tax_query = array();
+
+
+	// Setup an exclude from the tribe_events_cat taxonomy
+	$tax_query[] = array(
+		'taxonomy'  => 'tribe_events_cat',
+		'field'     => 'slug',
+		'terms'     => $exclude_cats,
+		'operator'  => 'NOT IN'
+	);
+
+	$wp_query->set('tax_query', $tax_query);
+
+	return $wp_query;
+}

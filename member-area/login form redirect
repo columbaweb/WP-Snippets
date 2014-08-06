@@ -1,0 +1,9 @@
+<!-- wp login -->
+<?php if ( !is_user_logged_in() ) { ?>
+    <?php 
+        $page_id_of_member_area = 665;
+        $args = array(
+            'redirect' => get_permalink( get_page( $page_id_of_member_area ) ),
+);
+	wp_login_form($args);
+?> 

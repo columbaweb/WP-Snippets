@@ -1,3 +1,5 @@
+# REDITRECT TO PAGE BY ID
+
 <!-- wp login -->
 <?php if ( !is_user_logged_in() ) { ?>
     <?php 
@@ -6,4 +8,13 @@
             'redirect' => get_permalink( get_page( $page_id_of_member_area ) ),
 );
 	wp_login_form($args);
+?> 
+
+
+# REDIREDT TO CUSTOM URL
+<?php 
+    $args = array(
+        'redirect' => site_url('/client-zone/'), 
+    );
+    wp_login_form($args);
 ?> 

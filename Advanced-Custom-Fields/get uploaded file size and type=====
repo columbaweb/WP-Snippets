@@ -1,0 +1,41 @@
+<?php
+  $attachment_id = get_field('dl-fb2');
+  $url = wp_get_attachment_url( $attachment_id );
+  $title = get_the_title( $attachment_id );
+  $myfile = filesize( get_attached_file( $attachment_id ) );
+  $bytes = size_format($myfile, 2);
+  if(get_field('dl-fb2')) { ?>
+  
+  <tr>
+      <td><a href="<?php echo $url; ?>" title="<?php echo $title; ?>">Скачать в формате fb2</a></td>
+      <td>Размер файла: <?php echo $bytes; ?></td>
+  </tr>
+  
+<?php } ?>
+
+
+==========
+
+<?php
+    $attachment_id = get_field('upload_file');
+    $url = wp_get_attachment_url( $attachment_id );
+    $title = get_the_title( $attachment_id );
+    $myfile = filesize( get_attached_file( $attachment_id ) );
+    $bytes = size_format($myfile, 0);
+    $path_info = pathinfo( get_attached_file( $attachment_id ) );
+
+    if(get_field('upload_file')) { ?>
+  
+    <div class="file">
+        <a href="<?php echo $url; ?>" title="<?php echo $title; ?>"><?php the_title(); ?></a>
+        <p class="meta">
+            <span class="spec"><strong><?php echo $path_info['extension']; ?> / <?php echo $bytes; ?></strong></span>
+            <span class="tags">Tagged: <?php the_terms( $post->ID, 'files-tags', ' ', ' ', ' ' ); ?></span>
+            <span class="date">Uploaded on: <?php the_time('F, j\<\s\u\p\>S\<\/\s\u\p\> Y') ?></span>
+        </p>
+        <?php if(get_field('file_short_description' ) != ""): ?>
+            <div class="description"><?php the_field('file_short_description'); ?></div>
+        <?php endif; ?>
+    </div>    
+
+<?php } ?>

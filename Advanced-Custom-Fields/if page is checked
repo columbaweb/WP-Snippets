@@ -1,0 +1,17 @@
+<?php 
+$args=array(
+'post_type' =>'page', 
+'meta_query' => array(
+array(
+'key' => 'sidebar_quiclink', // name of custom field
+'value' => 'add', // matches exaclty "red", not just red. This prevents a match for "acquired"
+'compare' => 'LIKE'
+)
+)
+);
+$ql_query = new WP_Query($args); ?>
+<?php if ($ql_query->have_posts()) : ?>
+<?php while ($ql_query->have_posts()) : $ql_query->the_post(); ?>
+<h3><?php the_title(); ?></h3>
+<?php endwhile; wp_reset_postdata(); ?>
+<?php endif; ?>
